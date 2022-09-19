@@ -1,0 +1,47 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - feature/*
+      - release/*
+      - main
+  pull_request:
+    branches:
+      - main
+env:
+  SEARCH_DIR: ./.github/workflows
+
+jobs: 
+  release:
+
+    if: startsWith(github.ref, 'refs/heads/main')
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: paulhatch/semantic-version@v4.0.2
+        id: tag
+        with:
+          # tag prefix
+          tag_prefix: "v"
+          major_pattern: "(MAJOR)"
+          minor_pattern: "(MINOR)"
+          format: "${major}.${minor}.${patch}"
+          bump_each_commit: false
+          short_tags: false
+      - name: Create Release
+        id: release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.tag.outputs.version_tag }}
+          release_name: Release ${{ steps.tag.outputs.version_tag }}
+          body: |
+            ${{ github.event.head_commit.message }}
+            History: ${{ github.event.after }}g
+          draft: true
+          prerelease: false
