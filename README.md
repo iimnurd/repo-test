@@ -1,4 +1,2 @@
 # repo-test
-
-
-MINOR
+feature
