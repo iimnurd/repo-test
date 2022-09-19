@@ -1,0 +1,13 @@
+name: INI YANG KEDUA
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs: 
+  DEPLOY:
+    runs-on: ubuntu-latest
+    steps:
+      - id : check-ref
+        run: echo "Deploying to production server on branch $GITHUB_REF"
