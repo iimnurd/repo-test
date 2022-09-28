@@ -61,4 +61,4 @@ jobs:
           context: 'Test report'
           state: 'success'
           sha: ${{ github.sha }}
-          target_url: iimnurd.github.io/gh-pages/${{ github.run_number }}/
+          target_url: https://iimnurd.github.io/gh-pages/${{ github.run_number }}/
