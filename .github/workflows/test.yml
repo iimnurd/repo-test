@@ -62,3 +62,13 @@ jobs:
           state: 'success'
           sha: ${{ github.sha }}
           target_url: https://iimnurd.github.io/gh-pages/${{ github.run_number }}/
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        if: always()
+        with:
+          folder: build
+          clean: true
+          clean-exclude: |
+            special-file.txt
+            some/*.txt
