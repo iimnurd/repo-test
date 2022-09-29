@@ -69,6 +69,7 @@ jobs:
         with:
           folder: build
           clean: true
+          target-folder: build
           clean-exclude: |
             special-file.txt
             some/*.txt
