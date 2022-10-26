@@ -33,12 +33,7 @@ jobs:
       - name: Restore dependencies
         run:  |
               dotnet tool install -g dotnet-stryker
-      - name: cd
-        run: | 
-            cd integrationtest/TargetProjects/TargetProject/
-            mkdir public_report
-            dotnet stryker --reporter "html"
-        
+      
         
       
           
@@ -46,9 +41,10 @@ jobs:
       - name: Stryker mutator 
         run: |
           cd integrationtest/TargetProjects/TargetProject/
+          mkdir public_report
           dotnet stryker --reporter "html"
           echo "INPUT_PATH=$(pwd)/$(find StrykerOutput -type d -name reports -print  -quit)" >> $GITHUB_ENV   
-          cp $(find StrykerOutput -name mutation-report.html -print  -quit) ../public_report/test.html
+          cp $(find StrykerOutput -name mutation-report.html -print  -quit) public_report/test.html
 
       - name: Create Index
         run: |
