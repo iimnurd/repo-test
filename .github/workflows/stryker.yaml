@@ -1,0 +1,98 @@
+name: Testing Stryker
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  testing-stryker:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        app: [MantraApi.Reports]
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v3
+        with:
+          repository: raschmitt/stryker-net-sample
+         
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Restore tools defined in the local tool manifest
+        run: dotnet tool restore
+      # Ignore Stryker for now.  We seem to have an issue with it
+      # - name: Create Report Dir
+      #   run: |
+      #     mkdir public_report
+          
+      # # Ignore Stryker for now.  We seem to have an issue with it
+      # - name: Stryker mutator ${{ matrix.app }}
+      #   run: |
+      #     cd ${{ matrix.app }}
+      #     dotnet stryker -f stryker-config.json --reporter "html"
+      #     echo "INPUT_PATH=$(pwd)/$(find StrykerOutput -type d -name reports -print  -quit)" >> $GITHUB_ENV   
+      #     cp $(find StrykerOutput -name mutation-report.html -print  -quit) ../public_report/${{ matrix.app }}.html
+
+      # - name: Create Index
+      #   run: |
+      #         cat > public_report/index.html <<EOL
+      #              <!DOCTYPE html>
+      #               <html>
+      #                 <head>
+      #                   <title>GitHub Pages deployed!</title>
+      #                 </head>
+      #                 <body>
+      #                   <p>GitHub Pages with <strong>${{ github.sha }}</strong> commit ID has been deployed through <a href="https://github.com/marketplace/actions/github-pages">GitHub Pages action</a> successfully.</p>
+      #                    <h1 style="text-align:center"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><strong><span style="font-size:18px">Stryker Report</span></strong></span></h1>
+
+      #                     <hr />
+      #                     <blockquote>
+      #                     <h1 style="text-align:center"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><a href="MantraApi.Agent.html" target="_blank">MantraApi.Agent</a></span></h1>
+      #                     </blockquote>
+
+      #                     <blockquote>
+      #                     <h1 style="text-align:center"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><a href="MantraApi.Reports.html" target="_blank">MantraApi.Report</a></span></h1>
+      #                     </blockquote>
+      #                 </body>
+      #               </html>
+      #         EOL
+
+      # - name: upload 
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: my-artifact
+      #     path: |
+      #       public_report/*.html
+      
+      
+      # - uses: actions/download-artifact@v2
+      #   with:
+      #     name: my-artifact
+      #     path: my-artifact
+
+      # - name: Setup Pages
+      #   uses: actions/configure-pages@v2
+      
+      # - uses: actions/upload-pages-artifact@v1
+      #   with:
+      #     name: github-pages
+      #     path: my-artifact
+          
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v1
+
+      
+        
