@@ -36,7 +36,7 @@ jobs:
       - name: cd
         run: | 
             cd Stryker.Net.Sample/Stryker.Net.Sample.Tests
-            dotnet stryker -f stryker-config.json --reporter "html"
+            dotnet stryker --reporter "html"
         
         
       # Ignore Stryker for now.  We seem to have an issue with it
