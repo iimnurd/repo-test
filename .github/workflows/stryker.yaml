@@ -75,7 +75,7 @@ jobs:
         with:
           name: my-artifact
           path: |
-            public_report/*.html
+            integrationtest/TargetProjects/TargetProject/public_report/*.html
       
       
       - uses: actions/download-artifact@v2
