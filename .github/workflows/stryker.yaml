@@ -35,7 +35,7 @@ jobs:
               dotnet tool install -g dotnet-stryker
       - name: cd
         run: | 
-            cd ExampleProjects/fsharpsyntaxtrees/fsharpsyntaxtrees
+            cd integrationtest/TargetProjects/TargetProject/
             dotnet stryker --reporter "html"
         
         
