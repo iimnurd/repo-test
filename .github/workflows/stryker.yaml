@@ -80,18 +80,29 @@ jobs:
         with:
           name: my-artifact
           path: my-artifact
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-      
-      - uses: actions/upload-pages-artifact@v1
-        with:
-          name: github-pages
-          path: my-artifact
           
       - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: gh-pages
+          build_dir: my-artifact
+          jekyll: true
+          keep_history: true
+        env:
+          GH_PAT: ${{ secrets.GIT_PAT }}
+
+#       - name: Setup Pages
+#         uses: actions/configure-pages@v2
+      
+#       - uses: actions/upload-pages-artifact@v1
+#         with:
+#           name: github-pages
+#           path: my-artifact
+          
+#       - name: Deploy to GitHub Pages
+#         id: deployment
+#         uses: actions/deploy-pages@v1
 
       
         
