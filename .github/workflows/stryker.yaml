@@ -23,7 +23,7 @@ jobs:
       - name: Checkout 
         uses: actions/checkout@v3
         with:
-          repository: raschmitt/stryker-net-sample
+          repository:  stryker-mutator/stryker-net 
       
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
@@ -35,7 +35,7 @@ jobs:
               dotnet tool install -g dotnet-stryker
       - name: cd
         run: | 
-            cd Stryker.Net.Sample/Stryker.Net.Sample.Tests
+            cd ExampleProjects/FsharpMutateTestApp/boolMutateTestApp.Test
             dotnet stryker --reporter "html"
         
         
