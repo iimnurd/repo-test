@@ -60,12 +60,10 @@ jobs:
 
                           <hr />
                           <blockquote>
-                          <h1 style="text-align:center"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><a href="MantraApi.Agent.html" target="_blank">MantraApi.Agent</a></span></h1>
+                          <h1 style="text-align:center"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><a href="test.html" target="_blank">Test</a></span></h1>
                           </blockquote>
 
-                          <blockquote>
-                          <h1 style="text-align:center"><span style="font-family:Trebuchet MS,Helvetica,sans-serif"><a href="MantraApi.Reports.html" target="_blank">MantraApi.Report</a></span></h1>
-                          </blockquote>
+                        
                       </body>
                     </html>
               EOL
