@@ -48,7 +48,7 @@ jobs:
 
       - name: Create Index
         run: |
-              cat > public_report/index.html <<EOL
+              cat > integrationtest/TargetProjects/TargetProject/public_report/index.html <<EOL
                    <!DOCTYPE html>
                     <html>
                       <head>
