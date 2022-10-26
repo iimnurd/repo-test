@@ -35,7 +35,7 @@ jobs:
               dotnet tool install -g dotnet-stryker
       - name: cd
         run: | 
-            cd ExampleProjects/FsharpMutateTestApp/boolMutateTestApp.Test
+            cd ExampleProjects/FsharpMutateTestApp/boolMutateTestApp
             dotnet stryker --reporter "html"
         
         
