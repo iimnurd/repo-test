@@ -90,7 +90,7 @@ jobs:
           jekyll: true
           keep_history: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
 
 #       - name: Setup Pages
 #         uses: actions/configure-pages@v2
