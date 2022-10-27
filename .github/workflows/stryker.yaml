@@ -88,7 +88,7 @@ jobs:
           target_branch: gh-pages
           build_dir: my-artifact
           jekyll: true
-          keep_history: false
+          keep_history: true
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
 
